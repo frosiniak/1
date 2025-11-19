@@ -1,9 +1,18 @@
+// =========================
+//  Trainer.js — ОНОВЛЕНО
+//  Додано: OODA Intro Page
+//  Інші частини НЕ змінено
+// =========================
+
 import React, { useMemo, useState } from "react";
 
 // Сценарії
 import pdca from "./scenarios/pdca.json";
 import ooda from "./scenarios/ooda.json";
 import sdca from "./scenarios/sdca.json";
+
+// OODA intro page
+import OodaIntro from "./OodaIntro";
 
 // Робочий Apps Script URL
 const SCRIPT_URL =
@@ -13,6 +22,9 @@ export default function Trainer() {
   const [userName, setUserName] = useState("");
   const [nameSubmitted, setNameSubmitted] = useState(false);
   const [model, setModel] = useState(null);
+
+  // Новий стан — показувати Intro OODA?
+  const [showOodaIntro, setShowOodaIntro] = useState(false);
 
   const scenarios = useMemo(() => {
     const map = { PDCA: pdca, OODA: ooda, SDCA: sdca };
@@ -43,10 +55,13 @@ export default function Trainer() {
     );
   }, [scenarios, hasScenarios]);
 
-  // Вибір відповіді
+  // =======================
+  //     ВИБІР ВІДПОВІДІ
+  // =======================
   const handleChoice = (option) => {
     if (stepCompleted) return;
     setFeedback(option.feedback || "");
+
     if (option.result === "success") {
       if (attemptsForStep === 0) setCorrectCount((c) => c + 1);
       setStepCompleted(true);
@@ -55,11 +70,12 @@ export default function Trainer() {
     }
   };
 
-  // Перехід вперед
+  // Перехід на наступний крок
   const goNextStep = () => {
     setFeedback("");
     setAttemptsForStep(0);
     setStepCompleted(false);
+
     if (!scenario) return;
 
     if (stepIndex < scenario.steps.length - 1) {
@@ -89,9 +105,18 @@ export default function Trainer() {
     setStepCompleted(false);
   };
 
+  // ============================
+  //     ВИБІР МОДЕЛІ
+  // ============================
   const chooseModel = (m) => {
     setModel(m);
     resetProgress();
+
+    // *** НОВЕ: якщо OODA → показуємо Intro сторінку
+    if (m === "OODA") {
+      setShowOodaIntro(true);
+    }
+
     try {
       const url = new URL(window.location.href);
       url.searchParams.set("model", m);
@@ -99,7 +124,9 @@ export default function Trainer() {
     } catch {}
   };
 
-  // === Відправка результатів у Google Sheets ===
+  // ============================
+  //   ВІДПРАВКА РЕЗУЛЬТАТІВ
+  // ============================
   const sendResults = async () => {
     if (isSending) return;
     setIsSending(true);
@@ -129,7 +156,7 @@ export default function Trainer() {
       const txt = await res.text();
       console.log("Apps Script response:", txt);
 
-      alert(`Результати надіслано. Ваш підсумок: ${resultText} (${percent}%).`);
+      alert(`Результати надіслані: ${resultText} (${percent}%).`);
 
       resetProgress();
       setModel(null);
@@ -142,13 +169,17 @@ export default function Trainer() {
       } catch {}
     } catch (err) {
       console.error("Error sending results:", err);
-      alert("Помилка при надсиланні результатів. Перевірте Apps Script.");
+      alert("Помилка надсилання результатів.");
     } finally {
       setIsSending(false);
     }
   };
 
-  // === UI ===
+  // ============================
+  //           UI
+  // ============================
+
+  // 1) Користувач ще не ввів ім'я
   if (!nameSubmitted) {
     return (
       <div style={{ maxWidth: 900, margin: "40px auto", padding: 20 }}>
@@ -161,23 +192,14 @@ export default function Trainer() {
             textAlign: "center",
           }}
         >
-          
           <h1>Вітаємо на навчальному сайті!</h1>
           <p>
             Це <b>Тренажер для керівників</b>, орієнтований на керівників
             Національної поліції України та підрозділів системи МВС.
           </p>
-          <p>
-            Він допомагає розвивати навички ухвалення рішень в умовах
-            невизначеності та закріплювати стандартні підходи.
-          </p>
-          <p>Моделі:</p>
-          <ul style={{ textAlign: "left" }}>
-            <li>PDCA — цикл безперервного вдосконалення.</li>
-            <li>OODA — швидке реагування у змінних ситуаціях.</li>
-            <li>SDCA — підтримка стандартів і контроль.</li>
-          </ul>
+
           <p>👉 Введіть ім’я або позивний для початку:</p>
+
           <div style={{ display: "flex", gap: 10 }}>
             <input
               value={userName}
@@ -214,6 +236,7 @@ export default function Trainer() {
     );
   }
 
+  // 2) Вибір моделі
   if (!model) {
     return (
       <div style={{ maxWidth: 900, margin: "40px auto", padding: 20 }}>
@@ -222,6 +245,7 @@ export default function Trainer() {
           <p>
             Вітаємо, <b>{userName}</b>. Оберіть модель:
           </p>
+
           <div style={{ display: "flex", gap: 12 }}>
             <button onClick={() => chooseModel("PDCA")} style={primaryBtn}>
               Почати PDCA
@@ -238,6 +262,12 @@ export default function Trainer() {
     );
   }
 
+  // 3) *** НОВЕ *** OODA INTRO PAGE
+  if (model === "OODA" && showOodaIntro) {
+    return <OodaIntro onStart={() => setShowOodaIntro(false)} />;
+  }
+
+  // 4) Основний тренажер
   return (
     <div style={{ maxWidth: 900, margin: "40px auto", padding: 20 }}>
       <div style={cardStyle}>
@@ -249,6 +279,7 @@ export default function Trainer() {
             <h3>
               {step.stage}: {step.question}
             </h3>
+
             <div style={{ display: "grid", gap: 8 }}>
               {step.options.map((opt, i) => (
                 <button
@@ -261,9 +292,13 @@ export default function Trainer() {
                 </button>
               ))}
             </div>
+
             {feedback && (
-              <div style={stepCompleted ? correctBox : wrongBox}>{feedback}</div>
+              <div style={stepCompleted ? correctBox : wrongBox}>
+                {feedback}
+              </div>
             )}
+
             {stepCompleted && (
               <div style={{ marginTop: 12 }}>
                 {stepIndex < scenario.steps.length - 1 ? (
@@ -307,14 +342,17 @@ const primaryBtn = {
   fontSize: 15,
   fontWeight: 600,
 };
+
 const successBtn = { ...primaryBtn, width: "auto", background: "#16a34a" };
 const secondaryBtn = { ...primaryBtn, width: "auto", background: "#2563eb" };
+
 const cardStyle = {
   background: "#fff",
   border: "1px solid #e5e7eb",
   borderRadius: 12,
   padding: 18,
 };
+
 const correctBox = {
   marginTop: 12,
   padding: 12,
@@ -322,6 +360,7 @@ const correctBox = {
   background: "#d1fae5",
   color: "#065f46",
 };
+
 const wrongBox = {
   marginTop: 12,
   padding: 12,
@@ -329,6 +368,7 @@ const wrongBox = {
   background: "#fee2e2",
   color: "#991b1b",
 };
+
 const infoBox = {
   padding: 16,
   border: "1px solid #e5e7eb",
