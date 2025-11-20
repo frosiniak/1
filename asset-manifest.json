@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/1/static/css/main.9d828c81.css",
-    "main.js": "/1/static/js/main.1b5ceef6.js",
+    "main.css": "/1/static/css/main.ed4510ae.css",
+    "main.js": "/1/static/js/main.7339e4b6.js",
     "static/media/sun-tzu.png": "/1/static/media/sun-tzu.f9cd5a63fe1f2d0aa7cc.png",
     "static/media/ooda-cycle.png": "/1/static/media/ooda-cycle.55d4e83a0e3b8e12ce65.png",
     "index.html": "/1/index.html",
-    "main.9d828c81.css.map": "/1/static/css/main.9d828c81.css.map",
-    "main.1b5ceef6.js.map": "/1/static/js/main.1b5ceef6.js.map"
+    "main.ed4510ae.css.map": "/1/static/css/main.ed4510ae.css.map",
+    "main.7339e4b6.js.map": "/1/static/js/main.7339e4b6.js.map"
   },
   "entrypoints": [
-    "static/css/main.9d828c81.css",
-    "static/js/main.1b5ceef6.js"
+    "static/css/main.ed4510ae.css",
+    "static/js/main.7339e4b6.js"
   ]
 }
