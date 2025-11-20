@@ -2,6 +2,7 @@
 //  Trainer.js — ОНОВЛЕНО
 //  Підтримка Intro OODA
 //  Підтримка кнопки «Назад»
+//  ДОДАНО: зображення для кожного кроку OODA
 // =========================
 
 import React, { useMemo, useState } from "react";
@@ -14,16 +15,28 @@ import sdca from "./scenarios/sdca.json";
 // Intro OODA
 import OodaIntro from "./OodaIntro";
 
+// --- ДОДАНО: зображення для етапів OODA ---
+import img1 from "./assets/ooda/1.png";
+import img2 from "./assets/ooda/2.png";
+import img3 from "./assets/ooda/3.png";
+import img4 from "./assets/ooda/4.png";
+
 // Google Apps Script
 const SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbwnC5MgaVFRLzSm97axk3417-__RSyM2J-L57wEn73lfyMKFy44QcY9AUM-nHGc5EA/exec";
+
+// --- ДОДАНО: відповідність зображень до кроків ---
+const stepImages = {
+  Observe: img1,
+  Orient: img2,
+  Decide: img3,
+  Act: img4,
+};
 
 export default function Trainer() {
   const [userName, setUserName] = useState("");
   const [nameSubmitted, setNameSubmitted] = useState(false);
   const [model, setModel] = useState(null);
-
-  // Показувати вступну сторінку OODA?
   const [showOodaIntro, setShowOodaIntro] = useState(false);
 
   const scenarios = useMemo(() => {
@@ -112,7 +125,6 @@ export default function Trainer() {
     setModel(m);
     resetProgress();
 
-    // для OODA показуємо intro
     if (m === "OODA") setShowOodaIntro(true);
 
     try {
@@ -127,7 +139,6 @@ export default function Trainer() {
   // ------------------------------
   const sendResults = async () => {
     if (isSending) return;
-
     setIsSending(true);
 
     const percent = totalQuestions
@@ -184,6 +195,7 @@ export default function Trainer() {
           <p>
             Це <b>тренажер для керівників</b>, орієнтований на керівників НПУ та МВС.
           </p>
+
           <p>👉 Введіть ім’я або позивний:</p>
 
           <div style={{ display: "flex", gap: 10 }}>
@@ -267,6 +279,22 @@ export default function Trainer() {
               {step.stage}: {step.question}
             </h3>
 
+            {/* --- ДОДАНО: ЗОБРАЖЕННЯ ЕТАПУ OODA --- */}
+            {stepImages[step.stage] && (
+              <img
+                src={stepImages[step.stage]}
+                alt="Ілюстрація етапу"
+                style={{
+                  width: "100%",
+                  maxWidth: "750px",
+                  margin: "15px auto",
+                  display: "block",
+                  borderRadius: "10px",
+                }}
+              />
+            )}
+
+            {/* Варіанти відповіді */}
             <div style={{ display: "grid", gap: 8 }}>
               {step.options.map((opt, i) => (
                 <button
@@ -317,6 +345,7 @@ export default function Trainer() {
 }
 
 /* ====== СТИЛІ ====== */
+
 const primaryBtn = {
   display: "block",
   width: "100%",
