@@ -1,0 +1,52 @@
+.ooda-container {
+  display: flex;
+  justify-content: center;
+  padding: 30px 10px;
+  background: #fafafa;
+}
+
+.ooda-content {
+  max-width: 900px;
+  width: 100%;
+  background: white;
+  padding: 25px 35px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.ooda-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+.ooda-text {
+  text-align: justify;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.ooda-image {
+  width: 100%;
+  max-width: 750px;
+  display: block;
+  margin: 25px auto;
+  border-radius: 10px;
+}
+
+.back-button {
+  margin-top: 30px;
+  padding: 12px 20px;
+  background: #005bbb;
+  color: white;
+  border: none;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background: #004999;
+}
