@@ -1,4 +1,3 @@
-/* Контейнер */
 .ooda-container {
   display: flex;
   justify-content: center;
@@ -6,7 +5,6 @@
   background: #fafafa;
 }
 
-/* Основний блок */
 .ooda-content {
   max-width: 900px;
   width: 100%;
@@ -14,27 +12,23 @@
   padding: 25px 35px;
   border-radius: 12px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  position: relative;
 }
 
-/* Заголовок */
 .ooda-title {
   text-align: center;
   font-size: 32px;
   margin-bottom: 25px;
   font-weight: 700;
-  color: #1f2937;
 }
 
-/* Основний текст */
 .ooda-text {
   text-align: justify;
   font-size: 18px;
-  line-height: 1.6;
+  line-height: 1.65;
   margin-bottom: 18px;
-  color: #374151;
 }
 
-/* Зображення */
 .ooda-image {
   width: 100%;
   max-width: 750px;
@@ -43,36 +37,31 @@
   border-radius: 10px;
 }
 
-/* ===== КНОПКИ ===== */
-
 /* Верхня кнопка Назад */
 .top-back-button {
-  background: none;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: transparent;
   border: none;
-  color: #2563eb;
   font-size: 18px;
   cursor: pointer;
-  margin-bottom: 20px;
-  padding: 0;
+  color: #2563eb;
 }
 
-.top-back-button:hover {
-  text-decoration: underline;
-}
-
-/* Нижня кнопка “Тренажер OODA” */
+/* Нижня кнопка «Перейти до тренажера» */
 .start-button {
   margin-top: 30px;
-  padding: 12px 20px;
+  padding: 14px 22px;
+  font-size: 18px;
   background: #2563eb;
   color: white;
   border: none;
-  font-size: 18px;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   width: 100%;
 }
 
 .start-button:hover {
-  background: #1f4fbf;
+  background: #1d4ed8;
 }
