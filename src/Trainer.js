@@ -1,7 +1,7 @@
 // =========================
 //  Trainer.js — ОНОВЛЕНО
-//  Додано: OODA Intro Page
-//  Інші частини НЕ змінено
+//  Підтримка Intro OODA
+//  Підтримка кнопки «Назад»
 // =========================
 
 import React, { useMemo, useState } from "react";
@@ -11,10 +11,10 @@ import pdca from "./scenarios/pdca.json";
 import ooda from "./scenarios/ooda.json";
 import sdca from "./scenarios/sdca.json";
 
-// OODA intro page
+// Intro OODA
 import OodaIntro from "./OodaIntro";
 
-// Робочий Apps Script URL
+// Google Apps Script
 const SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbwnC5MgaVFRLzSm97axk3417-__RSyM2J-L57wEn73lfyMKFy44QcY9AUM-nHGc5EA/exec";
 
@@ -23,7 +23,7 @@ export default function Trainer() {
   const [nameSubmitted, setNameSubmitted] = useState(false);
   const [model, setModel] = useState(null);
 
-  // Новий стан — показувати Intro OODA?
+  // Показувати вступну сторінку OODA?
   const [showOodaIntro, setShowOodaIntro] = useState(false);
 
   const scenarios = useMemo(() => {
@@ -55,9 +55,9 @@ export default function Trainer() {
     );
   }, [scenarios, hasScenarios]);
 
-  // =======================
-  //     ВИБІР ВІДПОВІДІ
-  // =======================
+  // ------------------------------
+  //      ВИБІР ВІДПОВІДІ
+  // ------------------------------
   const handleChoice = (option) => {
     if (stepCompleted) return;
     setFeedback(option.feedback || "");
@@ -70,7 +70,6 @@ export default function Trainer() {
     }
   };
 
-  // Перехід на наступний крок
   const goNextStep = () => {
     setFeedback("");
     setAttemptsForStep(0);
@@ -90,6 +89,7 @@ export default function Trainer() {
     setFeedback("");
     setAttemptsForStep(0);
     setStepCompleted(false);
+
     if (currentScenarioIndex < scenarios.length - 1) {
       setCurrentScenarioIndex((i) => i + 1);
       setStepIndex(0);
@@ -105,17 +105,15 @@ export default function Trainer() {
     setStepCompleted(false);
   };
 
-  // ============================
-  //     ВИБІР МОДЕЛІ
-  // ============================
+  // ------------------------------
+  //      ВИБІР МОДЕЛІ
+  // ------------------------------
   const chooseModel = (m) => {
     setModel(m);
     resetProgress();
 
-    // *** НОВЕ: якщо OODA → показуємо Intro сторінку
-    if (m === "OODA") {
-      setShowOodaIntro(true);
-    }
+    // для OODA показуємо intro
+    if (m === "OODA") setShowOodaIntro(true);
 
     try {
       const url = new URL(window.location.href);
@@ -124,23 +122,23 @@ export default function Trainer() {
     } catch {}
   };
 
-  // ============================
-  //   ВІДПРАВКА РЕЗУЛЬТАТІВ
-  // ============================
+  // ------------------------------
+  //      ВІДПРАВКА РЕЗУЛЬТАТІВ
+  // ------------------------------
   const sendResults = async () => {
     if (isSending) return;
+
     setIsSending(true);
 
     const percent = totalQuestions
       ? Math.round((correctCount / totalQuestions) * 100)
       : 0;
-    const resultText = `${correctCount}/${totalQuestions}`;
 
     const payload = {
       name: userName || "Анонім",
       date: new Date().toLocaleString(),
-      result: resultText,
-      percent: percent,
+      result: `${correctCount}/${totalQuestions}`,
+      percent,
       model: model || "",
     };
 
@@ -153,10 +151,8 @@ export default function Trainer() {
         body: formData,
       });
 
-      const txt = await res.text();
-      console.log("Apps Script response:", txt);
-
-      alert(`Результати надіслані: ${resultText} (${percent}%).`);
+      console.log("Apps Script:", await res.text());
+      alert(`Результати надіслані: ${correctCount}/${totalQuestions} (${percent}%).`);
 
       resetProgress();
       setModel(null);
@@ -168,37 +164,27 @@ export default function Trainer() {
         window.history.replaceState({}, "", url.toString());
       } catch {}
     } catch (err) {
-      console.error("Error sending results:", err);
+      console.error(err);
       alert("Помилка надсилання результатів.");
     } finally {
       setIsSending(false);
     }
   };
 
-  // ============================
+  // ------------------------------
   //           UI
-  // ============================
+  // ------------------------------
 
-  // 1) Користувач ще не ввів ім'я
+  // 1. Введення імені
   if (!nameSubmitted) {
     return (
       <div style={{ maxWidth: 900, margin: "40px auto", padding: 20 }}>
-        <div
-          style={{
-            background: "#fff",
-            padding: 22,
-            borderRadius: 12,
-            boxShadow: "0 6px 20px rgba(0,0,0,0.06)",
-            textAlign: "center",
-          }}
-        >
+        <div style={cardStyle}>
           <h1>Вітаємо на навчальному сайті!</h1>
           <p>
-            Це <b>Тренажер для керівників</b>, орієнтований на керівників
-            Національної поліції України та підрозділів системи МВС.
+            Це <b>тренажер для керівників</b>, орієнтований на керівників НПУ та МВС.
           </p>
-
-          <p>👉 Введіть ім’я або позивний для початку:</p>
+          <p>👉 Введіть ім’я або позивний:</p>
 
           <div style={{ display: "flex", gap: 10 }}>
             <input
@@ -214,19 +200,10 @@ export default function Trainer() {
             />
             <button
               onClick={() => {
-                if (!userName.trim()) {
-                  alert("Введіть ім’я!");
-                  return;
-                }
+                if (!userName.trim()) return alert("Введіть ім’я!");
                 setNameSubmitted(true);
               }}
-              style={{
-                padding: "10px 14px",
-                borderRadius: 8,
-                background: "#2563eb",
-                color: "#fff",
-                border: "none",
-              }}
+              style={primaryBtn}
             >
               Почати
             </button>
@@ -236,7 +213,7 @@ export default function Trainer() {
     );
   }
 
-  // 2) Вибір моделі
+  // 2. Вибір моделі
   if (!model) {
     return (
       <div style={{ maxWidth: 900, margin: "40px auto", padding: 20 }}>
@@ -262,12 +239,22 @@ export default function Trainer() {
     );
   }
 
-  // 3) *** НОВЕ *** OODA INTRO PAGE
+  // 3. Вступна сторінка OODA
   if (model === "OODA" && showOodaIntro) {
-    return <OodaIntro onStart={() => setShowOodaIntro(false)} />;
+    return (
+      <OodaIntro
+        onStart={() => {
+          setShowOodaIntro(false);
+        }}
+        onBack={() => {
+          setShowOodaIntro(false);
+          setModel(null);
+        }}
+      />
+    );
   }
 
-  // 4) Основний тренажер
+  // 4. Основний тренажер
   return (
     <div style={{ maxWidth: 900, margin: "40px auto", padding: 20 }}>
       <div style={cardStyle}>

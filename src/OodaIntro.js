@@ -1,87 +1,92 @@
 // src/OodaIntro.js
 import React from "react";
+import "./OodaIntro.css";
 
-export default function OodaIntro({ onStart }) {
+import oodaCycle from "./assets/ooda/ooda-cycle.png";
+import sunTzu from "./assets/ooda/sun-tzu.png";
+
+function OodaIntro({ onBack, onStart }) {
   return (
-    <div style={{ maxWidth: 900, margin: "40px auto", padding: 20 }}>
-      <div
-        style={{
-          background: "#fff",
-          padding: 22,
-          borderRadius: 12,
-          boxShadow: "0 6px 20px rgba(0,0,0,0.06)",
-        }}
-      >
-        <h1 style={{ textAlign: "center" }}>Модель OODA</h1>
+    <div className="ooda-container">
+      <div className="ooda-content">
 
-        {/* Блок 1: вступ */}
-        <p>
-          <i>Тут буде коротке пояснення суті моделі OODA.</i>
+        {/* === КНОПКА НАЗАД УВЕРХУ === */}
+        <button className="back-button-top" onClick={onBack}>
+          ⬅ Назад
+        </button>
+
+        <h1 className="ooda-title">Цикл OODA — Вступ</h1>
+
+        <p className="ooda-text">
+          Цикли OODA – це концепція, запропонована американським військовим
+          стратегом та авіатором колонелем Джоном Бойдом. Акронім “OODA” є
+          послідовністю кроків у процесі прийняття рішень та дій:
         </p>
 
-        {/* Головна діаграма */}
-        <div
-          style={{
-            margin: "20px 0",
-            height: 240,
-            background: "#f3f4f6",
-            borderRadius: 12,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "#666",
-          }}
-        >
-          <p>Тут буде ГОЛОВНЕ зображення циклу OODA</p>
-        </div>
+        <p className="ooda-text">
+          <b>Спостереження (Observation).</b> На цьому етапі збираються дані та
+          інформація про навколишнє середовище. Це включає сприйняття і аналіз
+          поточної ситуації.
+        </p>
 
-        <h3>Observe</h3>
-        <p><i>Тут буде текстовий опис.</i></p>
-        <div style={placeholderImage}>Зображення Observe</div>
+        <p className="ooda-text">
+          <b>Орієнтація (Orientation).</b> За підсумками отриманої інформації
+          відбувається орієнтування. Це включає розуміння контексту,
+          визначення факторів, що впливають на ситуацію, і формування власного
+          положення щодо навколишнього світу.
+        </p>
 
-        <h3>Orient</h3>
-        <p><i>Тут буде текстовий опис.</i></p>
-        <div style={placeholderImage}>Зображення Orient</div>
+        <p className="ooda-text">
+          <b>Рішення (Decision).</b> На основі спостереження та орієнтації
+          приймаються рішення про те, як діяти. Цей етап включає вибір
+          стратегії і плану дій.
+        </p>
 
-        <h3>Decide</h3>
-        <p><i>Тут буде текстовий опис.</i></p>
-        <div style={placeholderImage}>Зображення Decide</div>
+        <p className="ooda-text">
+          <b>Дія (Action).</b> Відбувається реалізація ухвалених рішень через
+          дії. Важливо не лише приймати рішення, а й оперативно втілювати їх у життя.
+        </p>
 
-        <h3>Act</h3>
-        <p><i>Тут буде текстовий опис.</i></p>
-        <div style={placeholderImage}>Зображення Act</div>
+        {/* --- ЗОБРАЖЕННЯ 1 --- */}
+        <img src={oodaCycle} alt="Схема циклу OODA" className="ooda-image" />
 
-        <div style={{ textAlign: "center", marginTop: 30 }}>
-          <button
-            onClick={onStart}
-            style={{
-              padding: "10px 20px",
-              background: "#2563eb",
-              color: "#fff",
-              border: "none",
-              borderRadius: 10,
-              cursor: "pointer",
-              fontSize: 16,
-              fontWeight: 600
-            }}
-          >
-            Почати тренажер OODA
-          </button>
-        </div>
+        <p className="ooda-text">
+          Філософія циклу — що якщо приймати рішення швидше за свого
+          супротивника, той буде діяти із запізненням, орієнтуючись на старе
+          уявлення про ситуацію, тому на кожному наступному етапі протиборства
+          буде все більше відставати. Тобто, якщо ви здатні бути спритними,
+          постійно оцінювати мінливе середовище та швидко адаптовуватися, то
+          завжди матимете перевагу над будь-яким суперником.
+        </p>
+
+        <p className="ooda-text">
+          Ключове завдання — навчитись оперативній адаптації і діяти швидше за
+          супротивника.
+        </p>
+
+        <p className="ooda-text">
+          «Війна – це шлях обману. Тому, якщо ти й можеш що-небудь, показуй
+          супротивнику ніби не можеш; якщо ти й користуєшся чим-небудь – показуй
+          йому ніби ти цим не користуєшся; хоч би ти й перебував близько – показуй,
+          ніби ти далеко; хоч би ти й перебував далеко – показуй що ти близько;
+          заманюй його вигодою; доведи його до розладу та бери його; якщо у нього
+          все повно, будь напоготові; якщо він сильний, – ухиляйся від нього;
+          викликавши у нього гнів – доведи його до стану розладу; вдавши сумирність –
+          виклич в ньому бундючність; якщо його сили свіжі – втоми його; якщо у нього
+          дружні воїни – роз’єднай; нападай на нього, коли він не готовий; виступай,
+          коли він не чекає.»
+        </p>
+
+        {/* --- ЗОБРАЖЕННЯ 2 --- */}
+        <img src={sunTzu} alt="Сунь-цзи Мистецтво війни" className="ooda-image" />
+
+        {/* === КНОПКА ПОЧАТИ ТРЕНАЖЕР === */}
+        <button className="start-ooda-button" onClick={onStart}>
+          ▶ Тренажер OODA
+        </button>
       </div>
     </div>
   );
 }
 
-const placeholderImage = {
-  width: "100%",
-  height: 180,
-  background: "#e5e7eb",
-  borderRadius: 12,
-  margin: "10px 0 30px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  color: "#777",
-  fontSize: 14,
-};
+export default OodaIntro;
