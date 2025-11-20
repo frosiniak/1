@@ -1,19 +1,13 @@
 // src/Footer.js
 import React from "react";
+import "./Footer.css";
 
-function Footer() {
+export default function Footer() {
   return (
-    <footer style={{
-      textAlign: "center",
-      padding: "10px",
-      fontSize: "12px",
-      color: "#666",
-      borderTop: "1px solid #ddd",
-      marginTop: "40px"
-    }}>
-      Всі права застережено. Використання матеріалів сайту тільки за наявності посилання на сайт
+    <footer className="main-footer">
+      <div className="footer-inner">
+        Всі права застережено. Використання матеріалів сайту тільки за наявності посилання на сайт.
+      </div>
     </footer>
   );
 }
-
-export default Footer;
