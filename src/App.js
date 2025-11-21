@@ -1,23 +1,23 @@
 // src/App.js
 import React from "react";
-import Trainer from "./Trainer";
+import "./App.css";
 
 import Header from "./Header";
 import Footer from "./Footer";
+import Trainer from "./Trainer";
 
 function App() {
   return (
-    <>
+    <div className="app-root">
       <Header />
 
-      <div style={{ minHeight: "calc(100vh - 160px)" }}>
+      <main className="app-content">
         <Trainer />
-      </div>
+      </main>
 
       <Footer />
-    </>
+    </div>
   );
 }
 
 export default App;
-

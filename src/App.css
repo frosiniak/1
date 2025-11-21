@@ -1,38 +1,124 @@
-.App {
-  text-align: center;
+/* ===== Глобальний фон ===== */
+body {
+  margin: 0;
+  padding: 0;
+  background: #0c1a33; /* темно-синій, близький до RAL 5013 */
+  font-family: Arial, sans-serif;
+  color: #fff;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+/* Кореневий контейнер */
+.app-root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+/* Контент між хедером і футером */
+.app-content {
+  flex: 1;
+  padding: 30px 20px;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+/* ===== Хедер ===== */
+.main-header {
+  background: #091327;
+  padding: 15px 0;
+  border-bottom: 2px solid #122347;
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 20px;
+}
+
+.header-logo {
+  width: 55px;
+  height: 55px;
+}
+
+.header-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+/* ===== Футер ===== */
+.main-footer {
+  background: #091327;
+  color: #d9dce2;
+  text-align: center;
+  padding: 16px;
+  margin-top: auto;
+  font-size: 14px;
+  border-top: 1px solid #122347;
+}
+
+/* ===== Карточка тренажера ===== */
+.card {
+  background: white;
+  color: #000;
+  padding: 25px;
+  max-width: 900px;
+  width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+/* ===== Головна сторінка: блок СИМДЕК ===== */
+.main-info {
+  background: white;
+  color: black;
+  padding: 30px;
+  border-radius: 14px;
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+.main-info h1 {
+  margin-top: 0;
+  font-size: 28px;
+  color: #0c1a33;
+}
+
+.main-info p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* Центральна кнопка */
+.big-start-btn {
+  margin-top: 20px;
+  background: #005bbb;
   color: white;
+  border: none;
+  padding: 14px 26px;
+  font-size: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-.App-link {
-  color: #61dafb;
+.big-start-btn:hover {
+  background: #004999;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Адаптивність */
+@media (max-width: 600px) {
+  .header-title {
+    font-size: 16px;
   }
-  to {
-    transform: rotate(360deg);
+  .header-logo {
+    width: 45px;
+    height: 45px;
   }
 }
