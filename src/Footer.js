@@ -1,12 +1,16 @@
 // src/Footer.js
 import React from "react";
-import "./App.css";
+import "./Footer.css";
 
-export default function Footer() {
+function Footer() {
   return (
-    <footer className="main-footer">
-      Всі права застережено. Використання матеріалів сайту дозволено лише
-      за наявності посилання на джерело.
+    <footer className="site-footer">
+      <p>
+        Всі права застережено. Використання матеріалів сайту тільки за наявності
+        посилання на сайт.
+      </p>
     </footer>
   );
 }
+
+export default Footer;

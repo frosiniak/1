@@ -1,16 +1,67 @@
-/* src/Header.css */
-.main-header {
-  background: #0a1a33;
-  padding: 18px 0;
+/* ===== Хедер з логотипом ДДУВС ===== */
+
+.site-header {
   width: 100%;
+  background: #0b1530; /* темно-синій у тон RAL 5013 */
+  color: #f9fafb;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.4);
 }
 
 .header-inner {
   max-width: 1100px;
-  margin: auto;
-  color: white;
+  margin: 0 auto;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Центруємо логотип + текст як єдиний блок */
+  gap: 10px;
+}
+
+.header-logo-wrap {
+  flex: 0 0 auto;
+}
+
+.header-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.header-text {
   text-align: center;
-  font-size: 22px;
+}
+
+.header-line {
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.08em;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+/* На ширших екранах — трохи більший шрифт */
+@media (min-width: 768px) {
+  .header-inner {
+    padding: 10px 16px;
+    gap: 14px;
+  }
+
+  .header-logo {
+    width: 52px;
+    height: 52px;
+  }
+
+  .header-line {
+    font-size: 13px;
+  }
+}
+
+/* На дуже вузьких екранах — переносимо в колонку по центру */
+@media (max-width: 480px) {
+  .header-inner {
+    flex-direction: column;
+  }
+
+  .header-text {
+    text-align: center;
+  }
 }

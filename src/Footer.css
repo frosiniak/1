@@ -1,16 +1,15 @@
-/* src/Footer.css */
-.main-footer {
-  background: #0a1a33;
-  padding: 14px 0;
-  margin-top: 40px;
-  width: 100%;
+/* ===== Футер по всій ширині, видно без гортання ===== */
+
+.site-footer {
+  background: rgba(5, 10, 28, 0.98);
+  color: #e5e7eb;
+  text-align: center;
+  padding: 8px 10px;
+  font-size: 12px;
+  border-top: 1px solid rgba(148, 163, 184, 0.4);
 }
 
-.footer-inner {
-  max-width: 1100px;
-  margin: auto;
-  color: white;
-  text-align: center;
-  font-size: 14px;
-  opacity: 0.9;
+.site-footer p {
+  margin: 0;
+  line-height: 1.5;
 }

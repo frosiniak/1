@@ -1,67 +1,132 @@
-.ooda-container {
+/* ===== Вступна сторінка OODA ===== */
+
+.ooda-page {
+  padding: 24px 12px 32px;
   display: flex;
   justify-content: center;
-  padding: 30px 10px;
-  background: #fafafa;
 }
 
-.ooda-content {
+.ooda-card {
   max-width: 900px;
   width: 100%;
-  background: white;
-  padding: 25px 35px;
-  border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-  position: relative;
+  background: #ffffff;
+  padding: 22px 20px 26px;
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.45);
+}
+
+/* Верхня кнопка «Назад» */
+.ooda-back-top {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-size: 14px;
+  padding: 0;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.ooda-back-top:hover {
+  text-decoration: underline;
 }
 
 .ooda-title {
   text-align: center;
-  font-size: 32px;
-  margin-bottom: 25px;
+  font-size: 26px;
   font-weight: 700;
+  margin: 4px 0 18px;
+  color: #111827;
 }
 
 .ooda-text {
   text-align: justify;
-  font-size: 18px;
-  line-height: 1.65;
-  margin-bottom: 18px;
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0 0 14px;
+  color: #111827;
 }
 
-.ooda-image {
+/* Головна схема циклу OODA */
+.ooda-image-full {
   width: 100%;
-  max-width: 750px;
+  max-width: 760px;
   display: block;
-  margin: 25px auto;
-  border-radius: 10px;
+  margin: 20px auto;
+  border-radius: 12px;
 }
 
-/* Верхня кнопка Назад */
-.top-back-button {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: transparent;
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
-  color: #2563eb;
+/* Блок з цитатою і обкладинкою Сунь-цзи */
+.ooda-quote-block {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-/* Нижня кнопка «Перейти до тренажера» */
-.start-button {
-  margin-top: 30px;
-  padding: 14px 22px;
-  font-size: 18px;
-  background: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
+.ooda-quote-image-wrap {
+  flex: 0 0 auto;
+}
+
+.ooda-image-side {
   width: 100%;
+  max-width: 260px;
+  border-radius: 12px;
+  display: block;
 }
 
-.start-button:hover {
+/* Текст цитати */
+.ooda-quote-text {
+  margin: 0;
+}
+
+/* Нижня кнопка переходу до тренажера */
+.ooda-actions {
+  margin-top: 26px;
+  text-align: center;
+}
+
+.ooda-start-btn {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.45);
+}
+
+.ooda-start-btn:hover {
   background: #1d4ed8;
+}
+
+/* Адаптація для ширших екранів — зображення Сунь-цзи збоку від тексту */
+@media (min-width: 768px) {
+  .ooda-card {
+    padding: 26px 28px 30px;
+  }
+
+  .ooda-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .ooda-quote-block {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .ooda-quote-image-wrap {
+    flex: 0 0 32%;
+  }
+
+  .ooda-image-side {
+    max-width: 100%;
+  }
+
+  .ooda-quote-text {
+    flex: 1;
+    margin-left: 8px;
+  }
 }

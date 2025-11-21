@@ -1,18 +1,27 @@
 // src/Header.js
 import React from "react";
-import "./App.css";
+import "./Header.css";
 import logo from "./assets/logo192.png";
 
-export default function Header() {
+function Header() {
   return (
-    <header className="main-header">
+    <header className="site-header">
       <div className="header-inner">
-        <img src={logo} alt="Логотип" className="header-logo" />
-        <div className="header-title">
-          <div>ДОНЕЦЬКИЙ ДЕРЖАВНИЙ</div>
-          <div>УНІВЕРСИТЕТ ВНУТРІШНІХ СПРАВ</div>
+        <div className="header-logo-wrap">
+          <img
+            src={logo}
+            alt="Логотип Донецького державного університету внутрішніх справ"
+            className="header-logo"
+          />
+        </div>
+
+        <div className="header-text">
+          <div className="header-line">ДОНЕЦЬКИЙ ДЕРЖАВНИЙ</div>
+          <div className="header-line">УНІВЕРСИТЕТ ВНУТРІШНІХ СПРАВ</div>
         </div>
       </div>
     </header>
   );
 }
+
+export default Header;
