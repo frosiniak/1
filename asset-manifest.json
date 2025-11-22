@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/1/static/css/main.6d575e23.css",
-    "main.js": "/1/static/js/main.0ea6ace0.js",
+    "main.css": "/1/static/css/main.1729dbcb.css",
+    "main.js": "/1/static/js/main.3c24de52.js",
     "static/media/2.png": "/1/static/media/2.d4da836be3a347092bee.png",
     "static/media/1.png": "/1/static/media/1.00ea1e372ddcc183fa9b.png",
     "static/media/3.png": "/1/static/media/3.e406b3ad854253d23411.png",
     "static/media/4.png": "/1/static/media/4.b316a06e441bb803403a.png",
-    "static/media/sun-tzu.png": "/1/static/media/sun-tzu.a7499d3734563bbbc0b8.png",
-    "static/media/ooda-cycle.png": "/1/static/media/ooda-cycle.55d4e83a0e3b8e12ce65.png",
-    "static/media/logo192.png": "/1/static/media/logo192.a06174db0bdcb2132e9e.png",
+    "static/media/suntzu.png": "/1/static/media/suntzu.a7499d3734563bbbc0b8.png",
+    "static/media/loop_official.png": "/1/static/media/loop_official.55d4e83a0e3b8e12ce65.png",
+    "static/media/logo192.png": "/1/static/media/logo192.d280dab108e94db917a4.png",
     "index.html": "/1/index.html",
-    "main.6d575e23.css.map": "/1/static/css/main.6d575e23.css.map",
-    "main.0ea6ace0.js.map": "/1/static/js/main.0ea6ace0.js.map"
+    "main.1729dbcb.css.map": "/1/static/css/main.1729dbcb.css.map",
+    "main.3c24de52.js.map": "/1/static/js/main.3c24de52.js.map"
   },
   "entrypoints": [
-    "static/css/main.6d575e23.css",
-    "static/js/main.0ea6ace0.js"
+    "static/css/main.1729dbcb.css",
+    "static/js/main.3c24de52.js"
   ]
 }
