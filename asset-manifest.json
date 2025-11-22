@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/1/static/css/main.1729dbcb.css",
+    "main.css": "/1/static/css/main.78cba449.css",
     "main.js": "/1/static/js/main.3c24de52.js",
     "static/media/2.png": "/1/static/media/2.d4da836be3a347092bee.png",
     "static/media/1.png": "/1/static/media/1.00ea1e372ddcc183fa9b.png",
@@ -10,11 +10,11 @@
     "static/media/loop_official.png": "/1/static/media/loop_official.55d4e83a0e3b8e12ce65.png",
     "static/media/logo192.png": "/1/static/media/logo192.d280dab108e94db917a4.png",
     "index.html": "/1/index.html",
-    "main.1729dbcb.css.map": "/1/static/css/main.1729dbcb.css.map",
+    "main.78cba449.css.map": "/1/static/css/main.78cba449.css.map",
     "main.3c24de52.js.map": "/1/static/js/main.3c24de52.js.map"
   },
   "entrypoints": [
-    "static/css/main.1729dbcb.css",
+    "static/css/main.78cba449.css",
     "static/js/main.3c24de52.js"
   ]
 }
