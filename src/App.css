@@ -14,10 +14,11 @@ body,
   padding: 0;
 }
 
+/* Фон сайту — повернуто ОРИГІНАЛЬНИЙ */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui,
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+
   background: radial-gradient(
       circle at top left,
       rgba(59, 130, 246, 0.25),
@@ -29,6 +30,8 @@ body {
       transparent 55%
     ),
     linear-gradient(180deg, #050a1c 0%, #0b1530 40%, #111827 100%);
+
+  background-attachment: fixed;
   color: #111827;
 }
 
@@ -53,58 +56,11 @@ body {
   max-width: 960px;
 }
 
-/* ===== Hero-блок із текстом про СИМДЕК ===== */
+/* ===== Hero-блок був видалений — стилі видалено ===== */
 
-.hero-card {
-  background: rgba(15, 23, 42, 0.92);
-  color: #e5e7eb;
-  border-radius: 16px;
-  padding: 18px 16px 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(148, 163, 184, 0.4);
-}
-
-.hero-title {
-  font-size: 18px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin: 0 0 8px;
-  text-align: left;
-}
-
-.hero-text {
-  margin: 4px 0;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-.hero-hint {
-  margin-top: 10px;
-  font-size: 13px;
-  opacity: 0.9;
-}
-
-/* Адаптація для ширших екранів */
+/* ===== Адаптація для ширших екранів ===== */
 @media (min-width: 768px) {
   .app-main {
     padding: 32px 16px 40px;
-  }
-
-  .hero-card {
-    padding: 22px 22px 24px;
-    margin-bottom: 24px;
-  }
-
-  .hero-title {
-    font-size: 20px;
-  }
-
-  .hero-text {
-    font-size: 15px;
-  }
-
-  .hero-hint {
-    font-size: 14px;
   }
 }
