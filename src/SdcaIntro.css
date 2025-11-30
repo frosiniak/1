@@ -1,0 +1,98 @@
+.sdca-page {
+width: 100%;
+display: flex;
+justify-content: center;
+padding: 20px;
+}
+
+.sdca-card {
+width: 100%;
+max-width: 900px;
+background: #ffffff;
+padding: 25px;
+border-radius: 14px;
+box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.sdca-top-bar {
+display: flex;
+justify-content: space-between;
+margin-bottom: 15px;
+}
+
+.sdca-back-btn {
+background: #d0d0d0;
+border: none;
+padding: 6px 12px;
+border-radius: 6px;
+cursor: pointer;
+}
+
+.sdca-start-top {
+background: #0057b7;
+color: white;
+border: none;
+padding: 6px 12px;
+border-radius: 6px;
+cursor: pointer;
+}
+
+.sdca-title {
+font-size: 28px;
+font-weight: 700;
+margin-bottom: 15px;
+}
+
+.sdca-subtitle {
+font-size: 22px;
+margin-top: 25px;
+}
+
+.sdca-text {
+font-size: 16px;
+margin-bottom: 14px;
+line-height: 1.55;
+color: #111827;
+}
+
+.sdca-list li {
+margin-bottom: 8px;
+}
+
+.sdca-image-full {
+width: 100%;
+margin: 18px 0;
+border-radius: 10px;
+}
+
+.sdca-quote-block {
+display: flex;
+margin-top: 25px;
+gap: 15px;
+}
+
+.sdca-image-side {
+width: 160px;
+height: auto;
+border-radius: 10px;
+}
+
+.sdca-quote-text {
+flex: 1;
+}
+
+.sdca-actions {
+margin-top: 25px;
+display: flex;
+justify-content: center;
+}
+
+.sdca-start-btn {
+background: #0057b7;
+color: white;
+border: none;
+padding: 10px 20px;
+border-radius: 10px;
+font-size: 16px;
+cursor: pointer;
+}

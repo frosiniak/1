@@ -1,15 +1,3 @@
-// =========================
-//  Trainer.js — ОНОВЛЕНО
-//  Три колонки з фоном
-//  Центрування заголовків
-//  Кнопка Назад
-//  Темніші кнопки
-//  PDCA/SDCA → у розробці
-//  OODA → як раніше
-//  НОВИЙ ВСТУПНИЙ БЛОК SIMDEC
-//  Світле поле + компактна кнопка справа
-// =========================
-
 import React, { useMemo, useState } from "react";
 
 import pdca from "./scenarios/pdca.json";
@@ -17,6 +5,8 @@ import ooda from "./scenarios/ooda.json";
 import sdca from "./scenarios/sdca.json";
 
 import OodaIntro from "./OodaIntro";
+import PdcaIntro from "./PdcaIntro";
+import SdcaIntro from "./SdcaIntro";
 
 import img1 from "./assets/ooda/1.png";
 import img2 from "./assets/ooda/2.png";
@@ -39,7 +29,11 @@ export default function Trainer() {
   const [userName, setUserName] = useState("");
   const [nameSubmitted, setNameSubmitted] = useState(false);
   const [model, setModel] = useState(null);
+  // intro page toggles
   const [showOodaIntro, setShowOodaIntro] = useState(false);
+  const [showPdcaIntro, setShowPdcaIntro] = useState(false);
+  const [showSdcaIntro, setShowSdcaIntro] = useState(false);
+  // kept for compatibility though no longer used to show "under construction"
   const [underConstruction, setUnderConstruction] = useState(false);
 
   const scenarios = useMemo(() => {
@@ -67,6 +61,8 @@ export default function Trainer() {
       0
     );
   }, [scenarios, hasScenarios]);
+
+  // ------------------ Логіка відповідей ------------------
 
   const handleChoice = (option) => {
     if (stepCompleted) return;
@@ -113,12 +109,32 @@ export default function Trainer() {
   };
 
   const chooseModel = (m) => {
-    if (m === "PDCA" || m === "SDCA") {
+    // For PDCA and SDCA — open their intro pages (instead of a stub)
+    if (m === "PDCA") {
       setModel(m);
-      setUnderConstruction(true);
+      resetProgress();
+      setShowPdcaIntro(true);
+      try {
+        const url = new URL(window.location.href);
+        url.searchParams.set("model", m);
+        window.history.replaceState({}, "", url.toString());
+      } catch {}
       return;
     }
 
+    if (m === "SDCA") {
+      setModel(m);
+      resetProgress();
+      setShowSdcaIntro(true);
+      try {
+        const url = new URL(window.location.href);
+        url.searchParams.set("model", m);
+        window.history.replaceState({}, "", url.toString());
+      } catch {}
+      return;
+    }
+
+    // OODA behavior unchanged
     setModel(m);
     resetProgress();
 
@@ -177,9 +193,8 @@ export default function Trainer() {
     }
   };
 
-  // -----------------------------------
-  // ЕКРАН ВВЕДЕННЯ ІМЕНІ
-  // -----------------------------------
+  // ------------------ Екран введення імені ------------------
+
   if (!nameSubmitted) {
     return (
       <div className="trainer-intro-wrapper">
@@ -248,36 +263,49 @@ export default function Trainer() {
     );
   }
 
-  // -----------------------------------
-  // МОДУЛІ У РОЗРОБЦІ
-  // -----------------------------------
-  if (underConstruction) {
-    return (
-      <div style={{ maxWidth: 900, margin: "40px auto", padding: 20 }}>
-        <div style={cardStyle}>
-          <h2>Модуль у розробці</h2>
-          <p>
-            Обраний вами модуль <b>{model}</b> наразі перебуває у стадії
-            підготовки.
-          </p>
+  // ------------------
+  // INTRO PAGES FOR PDCA / SDCA / OODA
+  // ------------------
 
-          <button
-            style={{ ...primaryBtn, width: "auto" }}
-            onClick={() => {
-              setUnderConstruction(false);
-              setModel(null);
-            }}
-          >
-            Назад
-          </button>
-        </div>
-      </div>
+  if (model === "PDCA" && showPdcaIntro) {
+    return (
+      <PdcaIntro
+        onStart={() => setShowPdcaIntro(false)}
+        onBack={() => {
+          setShowPdcaIntro(false);
+          setModel(null);
+        }}
+      />
     );
   }
 
-  // -----------------------------------
-  // ВИБІР МОДЕЛІ — НОВИЙ ДИЗАЙН
-  // -----------------------------------
+  if (model === "SDCA" && showSdcaIntro) {
+    return (
+      <SdcaIntro
+        onStart={() => setShowSdcaIntro(false)}
+        onBack={() => {
+          setShowSdcaIntro(false);
+          setModel(null);
+        }}
+      />
+    );
+  }
+
+  // OODA intro unchanged
+  if (model === "OODA" && showOodaIntro) {
+    return (
+      <OodaIntro
+        onStart={() => setShowOodaIntro(false)}
+        onBack={() => {
+          setShowOodaIntro(false);
+          setModel(null);
+        }}
+      />
+    );
+  }
+
+  // ------------------ Вибір моделі ------------------
+
   if (!model) {
     return (
       <div style={{ maxWidth: 900, margin: "40px auto", padding: 20 }}>
@@ -303,7 +331,7 @@ export default function Trainer() {
           </h2>
 
           <p style={{ marginBottom: 6 }}>
-            Раді вітати вас, <b>{userName}</b>, на онлайн-тренажері «СИМДЕК»  
+            Раді вітати вас, <b>{userName}</b>, на онлайн-тренажері «СИМДЕК»
             Донецького державного університету внутрішніх справ.
           </p>
           <p style={{ marginBottom: 6 }}>
@@ -361,21 +389,6 @@ export default function Trainer() {
           </div>
         </div>
       </div>
-    );
-  }
-
-  // -----------------------------------
-  // ВСТУП ДО OODA
-  // -----------------------------------
-  if (model === "OODA" && showOodaIntro) {
-    return (
-      <OodaIntro
-        onStart={() => setShowOodaIntro(false)}
-        onBack={() => {
-          setShowOodaIntro(false);
-          setModel(null);
-        }}
-      />
     );
   }
 
